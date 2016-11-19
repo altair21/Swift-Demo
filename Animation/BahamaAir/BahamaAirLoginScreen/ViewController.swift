@@ -69,6 +69,7 @@ class ViewController: UIViewController {
 
     status.isHidden = true
     status.center = loginButton.center
+    statusPosition = status.center
     view.addSubview(status)
 
     label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
@@ -138,7 +139,9 @@ class ViewController: UIViewController {
     
     UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
         self.loginButton.bounds.size.width += 80.0
-    }, completion: nil)
+    }, completion: { _ in
+        self.showMessage(index: 0)
+    })
     
     UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
         self.loginButton.center.y += 60.0
@@ -155,5 +158,32 @@ class ViewController: UIViewController {
     nextField?.becomeFirstResponder()
     return true
   }
+    
+    func showMessage(index: Int) {
+        label.text = messages[index]
+        
+        UIView.transition(with: status, duration: 0.33, options: [.curveEaseOut, .transitionCurlDown], animations: {
+            self.status.isHidden = false
+        }, completion: { _ in
+            delay(2.0, completion: { 
+                if index < self.messages.count - 1 {
+                    self.removeMessage(index: index)
+                } else {
+                    
+                }
+            })
+        })
+    }
+    
+    func removeMessage(index: Int) {
+        UIView.animate(withDuration: 0.33, delay: 0.0, options: [], animations: {
+            self.status.center.x += self.view.frame.size.width
+        }, completion: { _ in
+            self.status.isHidden = true
+            self.status.center = self.statusPosition
+            
+            self.showMessage(index: index + 1)
+        })
+    }
 
 }
