@@ -101,11 +101,11 @@ class ViewController: UIViewController {
         self.heading.center.x += self.view.bounds.width
     }
     
-    UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+    UIView.animate(withDuration: 0.5, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
         self.username.center.x += self.view.bounds.width
     }, completion: nil)
     
-    UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: {
+    UIView.animate(withDuration: 0.5, delay: 0.4, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
         self.password.center.x += self.view.bounds.width
     }, completion: nil)
     
