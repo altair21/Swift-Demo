@@ -130,6 +130,11 @@ class ViewController: UIViewController {
         self.loginButton.center.y -= 30.0
         self.loginButton.alpha = 1.0
     }, completion: nil)
+    
+    animateCloud(cloud: cloud1)
+    animateCloud(cloud: cloud2)
+    animateCloud(cloud: cloud3)
+    animateCloud(cloud: cloud4)
   }
 
   // MARK: further methods
@@ -206,6 +211,18 @@ class ViewController: UIViewController {
             self.loginButton.bounds.size.width -= 80.0
             self.loginButton.center.y -= 60.0
         }, completion: nil)
+    }
+    
+    func animateCloud(cloud: UIImageView) {
+        let cloudSpeed = 60.0 / view.frame.size.width
+        let duration = (view.frame.size.width - cloud.frame.origin.x) * cloudSpeed
+        
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0.0, options: [.curveLinear], animations: {
+            cloud.frame.origin.x = self.view.frame.size.width
+        }, completion: { _ in
+            cloud.frame.origin.x = -cloud.frame.size.width
+            self.animateCloud(cloud: cloud)
+        })
     }
 
 }
