@@ -107,11 +107,20 @@ class ViewController: UIViewController {
     NSLayoutConstraint.activate([conX, conBottom, conWidth, conHeight])
     
     view.layoutIfNeeded()
+    
     UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: {
         conBottom.constant = -imageView.frame.size.height / 2
         conWidth.constant = 0.0
         self.view.layoutIfNeeded()
     }, completion: nil)
+    
+    UIView.animate(withDuration: 0.8, delay: 1.8, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: {
+        conBottom.constant = imageView.frame.height
+        conWidth.constant = -50.0
+        self.view.layoutIfNeeded()
+    }, completion: { _ in
+        imageView.removeFromSuperview()
+    })
   }
 }
 
