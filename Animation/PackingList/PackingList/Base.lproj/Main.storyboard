@@ -41,7 +41,7 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="7Nn-jH-ggZ" firstAttribute="centerY" secondItem="Nca-Ny-Gfm" secondAttribute="centerY" constant="5" id="0a4-Eq-Evg"/>
+                                    <constraint firstItem="7Nn-jH-ggZ" firstAttribute="centerY" secondItem="Nca-Ny-Gfm" secondAttribute="centerY" constant="5" identifier="TitleCenterY" id="0a4-Eq-Evg"/>
                                     <constraint firstAttribute="height" constant="60" id="IAB-lw-OXL"/>
                                     <constraint firstAttribute="trailing" secondItem="nN5-UB-Vxh" secondAttribute="trailing" constant="8" id="dCN-VJ-xDT"/>
                                     <constraint firstItem="nN5-UB-Vxh" firstAttribute="centerY" secondItem="7Nn-jH-ggZ" secondAttribute="centerY" id="qBT-an-Qiw"/>
@@ -80,6 +80,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonMenu" destination="nN5-UB-Vxh" id="aBG-X7-QzE"/>
+                        <outlet property="menuHeightConstraint" destination="IAB-lw-OXL" id="tfH-TD-Y2g"/>
                         <outlet property="tableView" destination="wy5-DM-xc8" id="0VL-25-p2X"/>
                         <outlet property="titleLabel" destination="7Nn-jH-ggZ" id="FIx-XX-tKJ"/>
                     </connections>
