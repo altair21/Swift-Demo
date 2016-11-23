@@ -108,24 +108,29 @@ class ViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    let flyRight = CABasicAnimation(keyPath: "position.x")
-    flyRight.fromValue = -view.bounds.size.width / 2
-    flyRight.toValue = view.bounds.size.width / 2
-    flyRight.duration = 0.5
-    flyRight.fillMode = kCAFillModeBoth
-    flyRight.delegate = self
-    flyRight.setValue("form", forKey: "name")
-    flyRight.setValue(heading.layer, forKey: "layer")
+    let groupAnimation = CAAnimationGroup()
+    groupAnimation.fillMode = kCAFillModeBoth
+    groupAnimation.duration = 0.5
+    groupAnimation.delegate = self
+    let fade = CABasicAnimation(keyPath: "opacity")
+    fade.fromValue = 0.25
+    fade.toValue = 1.0
+    let move = CABasicAnimation(keyPath: "position.x")
+    move.fromValue = -view.bounds.size.width / 2
+    move.toValue = view.bounds.size.width / 2
+    groupAnimation.animations = [fade, move]
+    groupAnimation.setValue("form", forKey: "name")
+    groupAnimation.setValue(heading.layer, forKey: "layer")
     
-    heading.layer.add(flyRight, forKey: nil)
-    flyRight.beginTime = CACurrentMediaTime() + 0.3
-    flyRight.setValue(username.layer, forKey: "layer")
-    username.layer.add(flyRight, forKey: nil)
-    username.layer.position.x = view.bounds.size.width / 2
-    flyRight.beginTime = CACurrentMediaTime() + 0.4
-    flyRight.setValue(password.layer, forKey: "layer")
-    password.layer.add(flyRight, forKey: nil)
-    password.layer.position.x = view.bounds.size.width / 2
+    heading.layer.add(groupAnimation, forKey: nil)
+    
+    groupAnimation.setValue(username.layer, forKey: "layer")
+    groupAnimation.beginTime = CACurrentMediaTime() + 0.3
+    username.layer.add(groupAnimation, forKey: nil)
+    
+    groupAnimation.setValue(password.layer, forKey: "layer")
+    groupAnimation.beginTime = CACurrentMediaTime() + 0.4
+    password.layer.add(groupAnimation, forKey: nil)
 
     let fadeCloud = CABasicAnimation(keyPath: "opacity")
     fadeCloud.fromValue = 0.0
