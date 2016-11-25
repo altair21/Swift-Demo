@@ -24,6 +24,7 @@ extension PopAnimator: UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         let toView = transitionContext.view(forKey: .to)!
         let herbView = presenting ? toView : transitionContext.view(forKey: .from)!
+        let herbVC = presenting ? transitionContext.viewController(forKey: .to)! as! HerbDetailsViewController : transitionContext.viewController(forKey: .from)! as! HerbDetailsViewController
         
         let initialFrame = presenting ? originFrame : herbView.frame
         let finalFrame = presenting ? herbView.frame : originFrame
@@ -37,6 +38,8 @@ extension PopAnimator: UIViewControllerAnimatedTransitioning {
             herbView.transform = scaleTransform
             herbView.center = CGPoint(x: initialFrame.midX, y: initialFrame.midY)
             herbView.clipsToBounds = true
+            
+            herbVC.containerView.alpha = 0.0
         }
         
         containerView.addSubview(toView)
@@ -45,11 +48,19 @@ extension PopAnimator: UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: {
             herbView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
             herbView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
+            herbVC.containerView.alpha = self.presenting ? 1.0 : 0.0
         }, completion: { _ in
             if !self.presenting {
                 self.dismissCompletion?()
             }
             transitionContext.completeTransition(true)
         })
+        
+        let cornerRadius = CABasicAnimation(keyPath: "cornerRadius")
+        cornerRadius.fromValue = presenting ? 20.0 / xScaleFactor : 0.0
+        cornerRadius.toValue = presenting ? 0.0 : 20.0 / xScaleFactor
+        cornerRadius.duration = duration / 2
+        herbView.layer.cornerRadius = presenting ? 0.0 : 20.0 / xScaleFactor
+        herbView.layer.add(cornerRadius, forKey: nil)
     }
 }
