@@ -45,7 +45,7 @@ extension PopAnimator: UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toView)
         containerView.bringSubview(toFront: herbView)
         
-        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
             herbView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
             herbView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
             herbVC.containerView.alpha = self.presenting ? 1.0 : 0.0
