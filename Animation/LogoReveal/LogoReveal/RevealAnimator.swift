@@ -19,8 +19,8 @@ class RevealAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerAnim
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        storedContext = transitionContext
         if operation == .push {
-            storedContext = transitionContext
             let fromVC = transitionContext.viewController(forKey: .from) as! MasterViewController
             let toVC = transitionContext.viewController(forKey: .to) as! DetailViewController
             
@@ -87,12 +87,12 @@ class RevealAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerAnim
         case .cancelled, .ended:
             interactive = false
             let transitionLayer = storedContext!.containerView.layer
-            transitionLayer.beginTime = CACurrentMediaTime()
+            transitionLayer.beginTime = operation == .pop ? transitionLayer.beginTime : CACurrentMediaTime()
             if progress < 0.5 {
                 cancel()
-                transitionLayer.speed = -1.0
+                transitionLayer.speed = operation == .pop ? transitionLayer.speed : -1.0
             } else {
-                transitionLayer.speed = 1.0
+                transitionLayer.speed = operation == .pop ? transitionLayer.speed : 1.0
                 finish()
             }
         default:
