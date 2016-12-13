@@ -62,9 +62,8 @@ class ViewController: UIViewController {
         
         let emitterCell = CAEmitterCell()
         emitterCell.contents = UIImage(named: "flake.png")?.cgImage
-        emitterCell.birthRate = 150
+        emitterCell.birthRate = 30
         emitterCell.lifetime = 3.5
-        emitter.emitterCells = [emitterCell]
         emitterCell.yAcceleration = 70.0
         emitterCell.xAcceleration = 10.0
         emitterCell.velocity = 20.0
@@ -81,6 +80,54 @@ class ViewController: UIViewController {
         emitterCell.alphaRange = 0.75
         emitterCell.alphaSpeed = -0.15
         emitterCell.lifetimeRange = 1.0
+        
+        let emitterCell2 = CAEmitterCell()
+        emitterCell2.contents = UIImage(named: "flake4.png")?.cgImage
+        emitterCell2.birthRate = 40
+        emitterCell2.lifetime = 3.5
+        emitterCell2.lifetimeRange = 1.0
+        emitterCell2.xAcceleration = 10.0
+        emitterCell2.yAcceleration = 70.0
+        emitterCell2.velocity = 15.0
+        emitterCell2.velocityRange = 200.0
+        emitterCell2.emissionLongitude = -.pi
+        emitterCell2.emissionRange = .pi * 0.5
+        emitterCell2.color = UIColor(red: 0.9, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
+        emitterCell2.redRange = 0.1
+        emitterCell2.greenRange = 0.1
+        emitterCell2.blueRange = 0.1
+        emitterCell2.scale = 0.9
+        emitterCell2.scaleRange = 0.3
+        emitterCell2.scaleSpeed = -0.1
+        emitterCell2.alphaRange = 0.4
+        emitterCell2.alphaSpeed = -0.1
+        emitterCell2.spin = .pi * 0.5
+        emitterCell2.spinRange = .pi
+        
+        let emitterCell3 = CAEmitterCell()
+        emitterCell3.contents = UIImage(named: "flake2.png")?.cgImage
+        emitterCell3.birthRate = 10
+        emitterCell3.lifetime = 3.5
+        emitterCell3.lifetimeRange = 1.0
+        emitterCell3.xAcceleration = 10.0
+        emitterCell3.yAcceleration = 70.0
+        emitterCell3.velocity = 15.0
+        emitterCell3.velocityRange = 200.0
+        emitterCell3.emissionLongitude = -.pi
+        emitterCell3.emissionRange = .pi * 0.5
+        emitterCell3.color = UIColor(red: 0.9, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
+        emitterCell3.redRange = 0.1
+        emitterCell3.greenRange = 0.1
+        emitterCell3.blueRange = 0.1
+        emitterCell3.scale = 0.9
+        emitterCell3.scaleRange = 0.3
+        emitterCell3.scaleSpeed = -0.1
+        emitterCell3.alphaRange = 0.4
+        emitterCell3.alphaSpeed = -0.1
+        emitterCell3.spin = .pi * 0.5
+        emitterCell3.spinRange = .pi
+        
+        emitter.emitterCells = [emitterCell, emitterCell2, emitterCell3]
     }
     
     //MARK: custom methods
